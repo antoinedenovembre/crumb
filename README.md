@@ -6,7 +6,11 @@ Custom embedded Linux for Raspberry Pi 4, built with Yocto.
 
 ```bash
 docker build -t baker .
-docker run -it -v $(pwd):/home/yocto/crumb baker bash
+docker volume create crumb-build
+docker run -it \
+  -v $(pwd):/home/yocto/crumb-src \
+  -v crumb-build:/home/yocto/build \
+  baker bash
 ./setup.sh
-source poky/oe-init-build-env build
+source poky/oe-init-build-env /home/yocto/build
 ```

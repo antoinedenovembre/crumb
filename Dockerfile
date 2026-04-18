@@ -37,5 +37,7 @@ RUN locale-gen en_US.UTF-8
 RUN useradd -m -s /bin/bash yocto && \
     echo "yocto ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+RUN mkdir -p /home/yocto/build && chown yocto:yocto /home/yocto/build
+
 USER yocto
-WORKDIR /home/yocto/crumb
+WORKDIR /home/yocto/crumb-src
