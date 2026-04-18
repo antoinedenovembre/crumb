@@ -1,16 +1,39 @@
 FROM ubuntu:22.04
 
-RUN apt update && apt install -y \
-    gawk wget git diffstat unzip texinfo gcc build-essential \
-    chrpath socat cpio python3 python3-pip python3-pexpect \
-    xz-utils debianutils iputils-ping python3-git python3-jinja2 \
-    python3-subunit zstd liblz4-tool file locales libacl1 \
-    mesa-common-dev sudo
-
-RUN locale-gen en_US.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=en_US.UTF-8
 
-# Yocto cannot run as root, so we create a user
+RUN apt update && apt install -y \
+    build-essential \
+    chrpath \
+    cpio \
+    debianutils \
+    diffstat \
+    file \
+    gawk \
+    gcc \
+    git \
+    iputils-ping \
+    libacl1 \
+    liblz4-tool \
+    locales \
+    mesa-common-dev \
+    python3 \
+    python3-git \
+    python3-jinja2 \
+    python3-pexpect \
+    python3-pip \
+    python3-subunit \
+    socat \
+    sudo \
+    texinfo \
+    unzip \
+    wget \
+    xz-utils \
+    zstd
+
+RUN locale-gen en_US.UTF-8
+
 RUN useradd -m -s /bin/bash yocto && \
     echo "yocto ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
