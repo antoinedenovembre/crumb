@@ -12,5 +12,6 @@ docker run -it \
   -v crumb-build:/home/yocto/build \
   baker bash
 ./setup.sh
-source poky/oe-init-build-env /home/yocto/build
+./init.sh
+bitbake core-image-minimal
 ```
